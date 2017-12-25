@@ -3,7 +3,7 @@ import headerDirective from './header/header.directive';
 import inputDirective from './input/input.directive';
 import numberExpressionValidator from './input/service/number-expression.validator.service'
 
-export default angular.module('mainPage',[require('angular-messages')])
+export default angular.module('mainPage',['ngMessages'])
     .config(mainRouter)
     .directive('ntHeader', headerDirective)
     .directive('ntInput', inputDirective)

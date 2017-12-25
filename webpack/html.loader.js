@@ -1,9 +1,9 @@
-module.exports = function() {
+module.exports = function () {
     return {
         module: {
             rules: [{
                 test: /\.html$/,
-                use: [ {
+                use: [{
                     loader: 'html-loader',
                     options: {
                         minimize: true,

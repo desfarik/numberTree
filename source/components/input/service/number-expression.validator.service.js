@@ -14,14 +14,8 @@ export default function NumberExpressionValidator() {
 
     this.isValid = (expression) => {
         const clearExpression = transformExpression(expression);
-/*        console.log("----------------");
-        console.log(verifyCountsBrackets(clearExpression) ,"count");
-        console.log(verifyNumbers(clearExpression),"number");
-        console.log(verifyLeftBrackets(clearExpression),"left");
-        console.log(verifyRightBrackets(clearExpression),'right');
-        console.log(verifySymbols(clearExpression),"symbol");*/
-        return  verifyCountsBrackets(clearExpression) &&
-        verifyNumbers(clearExpression) &&
+        return verifyCountsBrackets(clearExpression) &&
+            verifyNumbers(clearExpression) &&
             verifyLeftBrackets(clearExpression) &&
             verifyRightBrackets(clearExpression) &&
             verifySymbols(clearExpression);
@@ -33,12 +27,13 @@ export default function NumberExpressionValidator() {
     }
 
     function deleteAllSpaces(expression) {
-        return expression.replace(SPACE,'');
+        return expression.replace(SPACE, '');
     }
 
     function wrapExpression(expression) {
         return `(${expression})`
     }
+
     function verifyCountsBrackets(expression) {
         return _.size(expression.match(LEFT_BRACKET)) === _.size(expression.match(RIGHT_BRACKET));
     }
@@ -46,8 +41,8 @@ export default function NumberExpressionValidator() {
     function verifyLeftBrackets(expression) {
         return (_.size(expression.match(VERIFY_LEFT_BRACKET)) + getDuplicateBrackets(expression, DUPLICATE_LEFT_BRACKETS)) === _.size(expression.match(LEFT_BRACKET));
     }
+
     function verifyRightBrackets(expression) {
-        console.log(expression.match(VERIFY_RIGHT_BRACKET), getDuplicateBrackets(expression, DUPLICATE_RIGHT_BRACKETS), expression.match(RIGHT_BRACKET));
         return (_.size(expression.match(VERIFY_RIGHT_BRACKET)) + getDuplicateBrackets(expression, DUPLICATE_RIGHT_BRACKETS)) === _.size(expression.match(RIGHT_BRACKET));
     }
 

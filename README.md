@@ -1,8 +1,5 @@
-# `NumberTree` — my hobby-project
+**Специально для меня**
 
-
-## Getting Started
-The simplest way to start project is
-```
-npm start
-```
+Как установить проект
+1. npm install
+2. npm run start

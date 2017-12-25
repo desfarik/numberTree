@@ -1,0 +1,16 @@
+<div class="input-container">
+    <form name="numberForm" flex layout="row" layout-align="center center">
+        <md-input-container class="md-block" flex-sm="60" flex-md="50" flex-gt-md="40">
+            <label>Input the number expression</label>
+            <input name="input" ng-model="inputNumber" ng-pattern="numberExpression">
+            <div ng-messages="numberForm.input.$error">
+                <div ng-message="required">This field is required</div>
+                <div ng-message="pattern">Must be a valid numeric arithmetic symbols!</div>
+                <div ng-message="pattern">Must be a valid number expression!</div>
+            </div>
+        </md-input-container>
+        <div class="button-wrapper">
+            <md-button class="md-raised md-primary" ng-click="processExpression(inputNumber)">Process</md-button>
+        </div>
+    </form>
+</div>

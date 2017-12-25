@@ -1,0 +1,14 @@
+.input-container {
+  height: 200px;
+  display: flex;
+  md-input-container, .button-wrapper {
+    height: 60px;
+  }
+  .button-wrapper {
+    margin-left: 24px;
+    button {
+      height: 40px;
+      width: 100px;
+    }
+  }
+}

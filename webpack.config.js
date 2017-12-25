@@ -34,8 +34,7 @@ module.exports = function(env) {
     if (env === 'production'){
         return merge([
             common,
-            extractCSS(),
-            uglifyJS()
+            extractCSS()
         ]);
     }
     if (env === 'development'){

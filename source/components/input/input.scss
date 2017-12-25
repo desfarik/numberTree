@@ -1,6 +1,8 @@
 .input-container {
-  height: 200px;
   display: flex;
+  form{
+    height: 200px;
+  }
   md-input-container, .button-wrapper {
     height: 60px;
   }
@@ -10,5 +12,14 @@
       height: 40px;
       width: 100px;
     }
+  }
+  .valid,.invalid {
+    font-size: 24px;
+  }
+  .valid {
+    color:forestgreen;
+  }
+  .invalid {
+    color: red;
   }
 }

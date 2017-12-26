@@ -1,13 +1,12 @@
 export default function NumberExpressionValidator(NumberExpressionTransformer, ExpressionConstants) {
 
     this.isValid = (expression) => {
-        this.expression = expression;
         const clearExpression = NumberExpressionTransformer.transform(expression);
-        return verifyCountsBrackets(clearExpression) &&
-            verifyNumbers(clearExpression) &&
-            verifyLeftBrackets(clearExpression) &&
-            verifyRightBrackets(clearExpression) &&
-            verifySymbols(clearExpression);
+        return verifyCountsBrackets(clearExpression)
+            && verifyNumbers(clearExpression)
+            && verifyLeftBrackets(clearExpression)
+            && verifyRightBrackets(clearExpression)
+            && verifyOperators(clearExpression);
     };
 
     function verifyCountsBrackets(expression) {
@@ -23,11 +22,11 @@ export default function NumberExpressionValidator(NumberExpressionTransformer, E
     }
 
     function getSizeVerifiedLeftBrackets(expression) {
-        return _.size(expression.match(ExpressionConstants.VERIFY_LEFT_BRACKET)) + getDuplicateBrackets(expression, ExpressionConstants.DUPLICATE_LEFT_BRACKETS);
+        return _.size(expression.match(ExpressionConstants.VERIFY_LEFT_BRACKETS)) + getDuplicateBrackets(expression, ExpressionConstants.DUPLICATE_LEFT_BRACKETS);
     }
 
     function getSizeVerifiedRightBrackets(expression) {
-        return _.size(expression.match(ExpressionConstants.VERIFY_RIGHT_BRACKET)) + getDuplicateBrackets(expression, ExpressionConstants.DUPLICATE_RIGHT_BRACKETS);
+        return _.size(expression.match(ExpressionConstants.VERIFY_RIGHT_BRACKETS)) + getDuplicateBrackets(expression, ExpressionConstants.DUPLICATE_RIGHT_BRACKETS);
     }
 
     function getDuplicateBrackets(expression, regex) {
@@ -35,18 +34,18 @@ export default function NumberExpressionValidator(NumberExpressionTransformer, E
     }
 
     function verifyNumbers(expression) {
-        return _.size(expression.match(ExpressionConstants.VERIFY_NUMBER)) === _.size(expression.match(ExpressionConstants.NUMBERS));
+        return _.size(expression.match(ExpressionConstants.VERIFY_NUMBERS)) === _.size(expression.match(ExpressionConstants.NUMBERS));
     }
 
-    function verifySymbols(expression) {
-        return _.size(expression.match(ExpressionConstants.VERIFY_SYMBOL)) === _.size(expression.match(ExpressionConstants.SYMBOLS));
+    function verifyOperators(expression) {
+        return _.size(expression.match(ExpressionConstants.VERIFY_OPERATORS)) === _.size(expression.match(ExpressionConstants.OPERATORS));
     }
 
     function getSizeLeftBrackets(expression) {
-        return _.size(expression.match(ExpressionConstants.LEFT_BRACKET))
+        return _.size(expression.match(ExpressionConstants.LEFT_BRACKETS))
     }
 
     function getSizeRightBrackets(expression) {
-        return _.size(expression.match(ExpressionConstants.RIGHT_BRACKET))
+        return _.size(expression.match(ExpressionConstants.RIGHT_BRACKETS))
     }
 };

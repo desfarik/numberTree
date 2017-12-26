@@ -8,9 +8,12 @@ export default function InputDirective(NumberExpressionValidator, NumberExpressi
     return {
         restrict: 'E',
         template,
+        scope: {
+            inputControl: '='
+        },
         link: function ($scope) {
             $scope.numberExpression = '[\\-\\(\\)\\/\\+\\*\\d\\ ]+';
-            $scope.inputNumber = '';
+            $scope.inputNumber = '(2+3)-2/5';
 
             $scope.verifyExpression = (form) => {
                 if (!_.includes(form.$error, DEFAULT_ERRORS)) {
@@ -18,9 +21,8 @@ export default function InputDirective(NumberExpressionValidator, NumberExpressi
                 }
             };
 
-            $scope.processExpression = (expression, form) => {
-                console.log(form);
-
+            $scope.processExpression = (expression) => {
+                $scope.inputControl.onProcess(NumberExpressionTransformer.transform(expression));
             };
             $scope.getTransformerText = (text) => text ? NumberExpressionTransformer.transform(text) : '';
         }

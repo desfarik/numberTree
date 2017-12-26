@@ -10,7 +10,7 @@
             </div>
         </md-input-container>
         <div class="button-wrapper">
-            <md-button class="md-raised md-primary" ng-disabled="numberForm.input.$invalid" ng-click="processExpression(inputNumber, numberForm)">Process</md-button>
+            <md-button class="md-raised md-primary" ng-disabled="numberForm.input.$invalid" ng-click="processExpression(inputNumber)">Process</md-button>
         </div>
     </form>
     <div layout="row" layout-align="center" ng-class="numberForm.input.$valid ? 'valid' : 'invalid'">

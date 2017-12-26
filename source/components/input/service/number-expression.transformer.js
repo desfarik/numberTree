@@ -9,7 +9,19 @@ export default function NumberExpressionTransformer(ExpressionConstants) {
     }
 
     function deleteAllSpaces(expression) {
-        return expression.replace(ExpressionConstants.SPACE, '');
+        expression = deleteSpaceBefore(expression);
+        return deleteSpaceAfter(expression);
+    }
+
+    function deleteSpaceBefore(expression) {
+        return expression.replace(ExpressionConstants.SPACE_BEFORE, '');
+    }
+
+    function deleteSpaceAfter(expression) {
+        _.forEach(expression.match(ExpressionConstants.SPACE_AFTER), (space) => {
+            expression = expression.replace(space, space[0])
+        });
+        return expression;
     }
 
     function wrapExpression(expression) {

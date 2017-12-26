@@ -4,7 +4,7 @@ require('./input.scss');
 
 const DEFAULT_ERRORS = ['pattern'];
 
-export default function InputDirective(NumberExpressionValidator) {
+export default function InputDirective(NumberExpressionValidator, NumberExpressionTransformer) {
     return {
         restrict: 'E',
         template,
@@ -21,7 +21,8 @@ export default function InputDirective(NumberExpressionValidator) {
             $scope.processExpression = (expression, form) => {
                 console.log(form);
 
-            }
+            };
+            $scope.getTransformerText = (text) => text ? NumberExpressionTransformer.transform(text) : '';
         }
     };
 };

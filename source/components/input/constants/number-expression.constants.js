@@ -1,5 +1,6 @@
 export default {
-    SPACE: /\s+/g,
+    SPACE_AFTER: /(?:[\(\)\+\-\*\/]?)\s+/g,
+    SPACE_BEFORE: /\s+(?=[\(\)\+\-\*\/])/g,
     LEFT_BRACKET: /\(/g,
     RIGHT_BRACKET: /\)/g,
     VERIFY_LEFT_BRACKET: /\([\(\d]/g,

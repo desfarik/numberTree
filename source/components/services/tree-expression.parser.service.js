@@ -6,8 +6,8 @@ export default function TreeExpressionParser(ExpressionConstants) {
         while (expression.length > 1) {
             const operatorIndex = _.findIndex(expression, (element) => checkOperator(element));
             expression = addBranchToExpression(expression, operatorIndex);
-            console.log(expression);
         }
+        console.log("TREE",expression);
         return expression;
     }
 

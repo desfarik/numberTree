@@ -2,6 +2,12 @@ export default function NumberExpressionValidator(NumberExpressionTransformer, E
 
     this.isValid = (expression) => {
         const clearExpression = NumberExpressionTransformer.transform(expression);
+/*        console.log("------------");
+        console.log('verifyCountsBrackets',verifyCountsBrackets(clearExpression));
+        console.log('verifyNumbers',verifyNumbers(clearExpression));
+        console.log('verifyLeftBrackets',verifyLeftBrackets(clearExpression));
+        console.log('verifyRightBrackets',verifyRightBrackets(clearExpression));
+        console.log('verifyOperators',verifyOperators(clearExpression));*/
         return verifyCountsBrackets(clearExpression)
             && verifyNumbers(clearExpression)
             && verifyLeftBrackets(clearExpression)

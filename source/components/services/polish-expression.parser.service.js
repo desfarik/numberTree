@@ -29,11 +29,8 @@ export default function PolishExpressionParser(ExpressionConstants) {
     }
 
     function parseExpression(expression) {
-        _.forEach(expression, (symbol) => {
-            SYMBOL_CALLBACKS[getTypeSymbol(symbol)].callback(symbol);
-            console.log("text", outputExpression);
-            console.log("operand", operandStack);
-        });
+        _.forEach(expression, (symbol) =>
+            SYMBOL_CALLBACKS[getTypeSymbol(symbol)].callback(symbol));
         return concatExpressionAndOperands();
     }
 
@@ -56,7 +53,7 @@ export default function PolishExpressionParser(ExpressionConstants) {
             callback: (number) => outputExpression.push(number)
         },
         OPERAND: {
-            callback:(currentOperand) => operandCallBack(currentOperand)
+            callback: (currentOperand) => operandCallBack(currentOperand)
         },
         BRACKET: {
             callback: () => bracketCallBack()
@@ -65,7 +62,7 @@ export default function PolishExpressionParser(ExpressionConstants) {
 
     function operandCallBack(currentOperand) {
         operandStack = _.dropRightWhile(operandStack, (operand) => {
-            if (OPERAND_PRIORITY[operand] > OPERAND_PRIORITY[currentOperand]) {
+            if (OPERAND_PRIORITY[operand] > OPERAND_PRIORITY[currentOperand] && OPERAND_PRIORITY[currentOperand] !== 1) { //if first bracket need push
                 outputExpression.push(operand);
                 return true;
             } else {
@@ -73,11 +70,9 @@ export default function PolishExpressionParser(ExpressionConstants) {
             }
         });
         operandStack.push(currentOperand);
-        console.log("afterAdded", operandStack);
     }
 
     function bracketCallBack() {
-        console.log(operandStack);
         operandStack = _.dropRightWhile(operandStack, (operand) => {
             if (operand !== FIRST_BRACKET) {
                 outputExpression.push(operand);
@@ -87,6 +82,5 @@ export default function PolishExpressionParser(ExpressionConstants) {
             }
         });
         operandStack.pop(); //delete FIRST_BRACKET;
-        console.log(operandStack);
     }
 };

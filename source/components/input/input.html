@@ -1,4 +1,4 @@
-<div class="input-container" layout="column">
+<div class="input-container" layout="column" layout-align="end">
     <form name="numberForm" flex layout="row" layout-align="center center">
         <md-input-container class="md-block" flex-sm="60" flex-md="50" flex-gt-md="40">
             <label>Input the number expression</label>
@@ -14,6 +14,6 @@
         </div>
     </form>
     <div layout="row" layout-align="center" ng-class="numberForm.input.$valid ? 'valid' : 'invalid'">
-       {{getTransformerText(inputNumber)}}
+       {{inputNumber}}
     </div>
 </div>

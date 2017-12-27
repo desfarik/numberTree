@@ -7,8 +7,8 @@ export default function TreeExpressionParser(ExpressionConstants) {
             const operatorIndex = _.findIndex(expression, (element) => checkOperator(element));
             expression = addBranchToExpression(expression, operatorIndex);
         }
-        console.log("TREE",expression);
-        return expression;
+        console.log("TREE", expression);
+        return wrapTreeObject(expression);
     }
 
     function checkOperator(element) {
@@ -29,8 +29,26 @@ export default function TreeExpressionParser(ExpressionConstants) {
         branch.left = {expression: left};
         branch.right = {expression: right};
         branch.operand = operand;
-        //branch.value = operations[operand](_.toNumber(left))(_.toNumber(right));
+        branch.fullValue = getBranchValue(branch);
         return branch;
+    }
+
+    function getBranchValue(branch) {
+        let left = getValue(branch.left);
+        let right = getValue(branch.right);
+        return operations[branch.operand](_.toNumber(left), _.toNumber(right));
+    }
+
+    function getValue(branch) {
+        return hasChild(branch) ? branch.expression.fullValue : branch.expression;
+    }
+
+    function hasChild(branch) {
+        return branch.expression.left;
+    }
+
+    function wrapTreeObject(expression) {
+        return {expression: expression[0]};
     }
 
     const operations = {

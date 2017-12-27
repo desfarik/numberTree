@@ -2,4 +2,9 @@ body {
   font-family: 'Catamaran', sans-serif;
   font-size: 18px;
   font-weight: 400;
+  overflow: hidden !important;
+}
+
+md-content {
+  height: calc(100% - 64px);
 }

@@ -7,9 +7,11 @@ export default function MainController($scope, NumberExpressionParser) {
         console.log("dfsdf")
     };
 
+    vm.getNumberTree = ()=> vm.numberTree;
+
     vm.inputControl = {
         onProcess: (expression)=>{
-            vm.parsedExpression = NumberExpressionParser.parse(expression)
+            vm.numberTree = NumberExpressionParser.parse(expression);
         }
     }
 }

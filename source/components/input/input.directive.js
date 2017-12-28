@@ -13,7 +13,7 @@ export default function InputDirective(NumberExpressionValidator, NumberExpressi
         },
         link: function ($scope) {
             $scope.numberExpression = '[\\-\\(\\)\\/\\+\\*\\d\\ ]+';
-            $scope.inputNumber = '(2+3)-2/5';
+            $scope.inputNumber = '(2+3)-2/5+7';
 
             $scope.verifyExpression = (form) => {
                 if (!_.includes(form.$error, DEFAULT_ERRORS)) {

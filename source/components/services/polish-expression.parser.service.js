@@ -12,10 +12,10 @@ export default function PolishExpressionParser(ExpressionConstants) {
     const OPERAND_PRIORITY = {
         "(": 1,
         "+": 2,
-        "-": 2,
-        "*": 3,
-        "/": 3,
-        "^": 3,
+        "-": 3,
+        "*": 4,
+        "/": 5,
+        "^": 6,
     };
 
     this.parse = (expression) => {
@@ -62,6 +62,11 @@ export default function PolishExpressionParser(ExpressionConstants) {
 
     function operandCallBack(currentOperand) {
         operandStack = _.dropRightWhile(operandStack, (operand) => {
+            if (OPERAND_PRIORITY[operand] === OPERAND_PRIORITY[currentOperand] && OPERAND_PRIORITY[currentOperand] === 3) { // if current and first minus
+                outputExpression.push(operand);
+                operandStack.pop();
+                return false;
+            }
             if (OPERAND_PRIORITY[operand] > OPERAND_PRIORITY[currentOperand] && OPERAND_PRIORITY[currentOperand] !== 1) { //if first bracket need push
                 outputExpression.push(operand);
                 return true;

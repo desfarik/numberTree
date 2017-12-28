@@ -12,6 +12,9 @@ import numberExpressionParser from './services/number-expression.parser.service'
 import polishExpressionParser from './services/polish-expression.parser.service';
 import treeExpressionParser from './services/tree-expression.parser.service';
 import treeBuilder from './numberTree/services/tree-builder.service';
+import lineArrowBuilder from './numberTree/services/line-arrow.builder.service';
+import ellipsePointCalculator from './numberTree/services/ellipse-point.calculator.service';
+import lineParamsCalculator from './numberTree/services/line-params.calculator.service';
 
 export default angular.module('mainPage', ['ngMessages'])
     .config(mainRouter)
@@ -26,4 +29,7 @@ export default angular.module('mainPage', ['ngMessages'])
     .service('PolishExpressionParser', polishExpressionParser)
     .service('TreeExpressionParser', treeExpressionParser)
     .service('TreeBuilder', treeBuilder)
+    .service('LineArrowBuilder', lineArrowBuilder)
+    .service('EllipsePointCalculator', ellipsePointCalculator)
+    .service('LineParamsCalculator', lineParamsCalculator)
     .name;

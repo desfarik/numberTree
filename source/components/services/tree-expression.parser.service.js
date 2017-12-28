@@ -44,7 +44,7 @@ export default function TreeExpressionParser(ExpressionConstants) {
     }
 
     function hasChild(branch) {
-        return branch.expression.left;
+        return  branch.expression && branch.expression.left;
     }
 
     function wrapTreeObject(expression) {

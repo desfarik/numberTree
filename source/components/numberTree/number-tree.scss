@@ -45,6 +45,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 100;
 
   .child-content {
     overflow: hidden;
@@ -52,6 +53,7 @@
     text-overflow: ellipsis;
     cursor: default;
     max-width: 80px;
+    max-height: 30px;
   }
 }
 
@@ -80,7 +82,12 @@
 }
 
 #lines-container {
-  width: 100px;
-  height: 100px;
   position: absolute;
+  z-index: 1;
+  > line {
+    stroke: red;
+  }
+  .lineToChild{
+    stroke: blue;
+  }
 }

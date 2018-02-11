@@ -2,21 +2,24 @@ import template from './number-tree.html'
 
 require('./number-tree.scss');
 
-export default function NumberTreeDirective(TreeBuilder, TreeConstants, LineArrowBuilder) {
+export default function NumberTreeDirective(TreeBuilder, TreeConstants, LineArrowBuilder, $compile) {
     return {
         restrict: 'E',
         template,
         scope: {
             inputTree: '='
         },
-        link: function (scope) {
-            scope.$watch('inputTree', (tree) => refreshTree(tree));
+        link: function (scope, element) {
+            scope.$watch('inputTree', (tree) => {
+                refreshTree(tree, element,scope);
+            });
         }
     };
 
-    function refreshTree(tree) {
+    function refreshTree(tree, element,scope) {
         if (tree) {
             refreshTreeBody(tree);
+            $compile(element.contents())(scope);
             refreshConnectionsTreeContainer();
             LineArrowBuilder.buildConnectionsLines();
         }

@@ -12,18 +12,29 @@ export default function InputDirective(NumberExpressionValidator, NumberExpressi
             inputControl: '='
         },
         link: function ($scope) {
-            $scope.numberExpression = '[\\-\\(\\)\\/\\+\\*\\d\\ ]+';
-            $scope.inputNumber = '(2+3)-2/5+7';
+            $scope.inputNumber = '';
+            $scope.result = null;
 
             $scope.verifyExpression = (form) => {
-                if (!_.includes(form.$error, DEFAULT_ERRORS)) {
-                    form.$setValidity('customErrorNumberExpression', NumberExpressionValidator.isValid(form.$viewValue));
+                if (!NumberExpressionValidator.isValidExpressionForPattern(form.$viewValue)) {
+                    form.$setValidity('customErrorPattern', false);
+                } else {
+                    form.$setValidity('customErrorPattern', true);
+                    if (NumberExpressionValidator.isValidExpression(form.$viewValue)) {
+                        form.$setValidity('customErrorNumberExpression', true);
+                        $scope.result = $scope.inputControl.onCalculateResult($scope.inputNumber);
+                        $scope.inputControl.onProcess(NumberExpressionTransformer.transform($scope.inputNumber));
+                    } else {
+                        form.$setValidity('customErrorNumberExpression', false);
+                    }
+
                 }
             };
 
-            $scope.processExpression = (expression) => {
-                $scope.inputControl.onProcess(NumberExpressionTransformer.transform(expression));
+            $scope.getResult = (expression) => {
+                return expression + (!!$scope.result ? ` = ${$scope.result}` : '');
             };
+
             $scope.getTransformerText = (text) => text ? NumberExpressionTransformer.transform(text) : '';
         }
     };

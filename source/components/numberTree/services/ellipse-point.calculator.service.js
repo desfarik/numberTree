@@ -4,7 +4,7 @@ export default function EllipsePointCalculatorService() {
 
     function getPointOnEllipse(child, parent, ellipse, isRightChild) {
         let angular = getAngularBetweenVectors(child, parent);
-        let ellipseRadius = getEllipseRadius(ellipse, (angular + 90) * Math.PI / 180);
+        let ellipseRadius = getEllipseRadius(ellipse, (angular + 90) * Math.PI / 180) + 3;
         if (isRightChild) {
             angular = (angular) * Math.PI / 180;
         } else {

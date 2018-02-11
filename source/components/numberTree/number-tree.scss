@@ -19,7 +19,8 @@
   height: 50px;
   min-width: 50px;
   border-radius: 50%;
-  background-color: slategray;
+  border: 2px solid slategray;
+  background-color: #d0f8ce;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,9 +30,21 @@
     overflow: hidden;
     padding: 4px;
     text-overflow: ellipsis;
-    cursor: default;
     max-width: 80px;
     max-height: 30px;
+    cursor: default;
+  }
+}
+
+.has-children {
+  @extend .child;
+  cursor: pointer;
+  background-color: #72d572;
+  .child-content {
+    cursor: pointer;
+  }
+  &:hover{
+    background-color: #5eca62;
   }
 }
 
@@ -46,15 +59,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 50;
 }
 
 #lines-container {
   position: absolute;
-  z-index: 1;
+  z-index: 0;
   > line {
-    stroke: red;
+    stroke: #3f51b5;
   }
-  .lineToChild{
+  .lineToChild {
     stroke: blue;
   }
+}
+.md-tooltip.md-show {
+  height: 36px;
+  line-height: 36px;
+  font-size: 19px;
 }

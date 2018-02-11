@@ -16,4 +16,5 @@ export default {
     PARSE_EXPRESSION: /\d+| \-\d+|[\(\)\+\-\*\/]/g,
     PARSE_EXCEPTION_MINUS: /\(\-/g,
     NO_NUMBERS: /\D$/,
+    ALL_SYMBOLS: /[^\(\)\+\-\*\/ \ \d]/,
 }

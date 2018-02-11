@@ -15,6 +15,7 @@ import treeBuilder from './numberTree/services/tree-builder.service';
 import lineArrowBuilder from './numberTree/services/line-arrow.builder.service';
 import ellipsePointCalculator from './numberTree/services/ellipse-point.calculator.service';
 import lineParamsCalculator from './numberTree/services/line-params.calculator.service';
+import expressionCalculateService from './services/expression.calculate.servise';
 
 export default angular.module('mainPage', ['ngMessages'])
     .config(mainRouter)
@@ -32,4 +33,5 @@ export default angular.module('mainPage', ['ngMessages'])
     .service('LineArrowBuilder', lineArrowBuilder)
     .service('EllipsePointCalculator', ellipsePointCalculator)
     .service('LineParamsCalculator', lineParamsCalculator)
+    .service('ExpressionCalculateService', expressionCalculateService)
     .name;
